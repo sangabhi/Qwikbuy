@@ -1,0 +1,186 @@
+<!--index html ka content -->
+
+        <!--Footer-->
+        <section class="footer"  id="foot">
+            <div class="box-container">
+                <div class="box">
+                    <h3>Qwikbuy<i class="fas fa-shopping-basket"></i></h3>
+                    <p>Discover the joy of shopping from the comfort of your homewith our vast selection of quality products at unbeatable prices.
+                        We are here to serve you the best items at affordable prices.</p>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                        <a href="#" class="fab fa-whatsapp"></a>
+                    </div>
+                </div>
+        
+                <div class="box">
+                    <h3>contact info</h3>
+                    <a href="#" class="links"><i class="fas fa-phone"></i>+91 9451031243<a>
+                    <a href="#" class="links"><i class="fas fa-phone"></i>+91 9696072801</a>
+                    <a href="#" class="links"><i class="fas fa-envelope"></i>abhidubey1555@gmail.com</a>
+                    <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>Mundera Prayagraj U.P. -211002</a>
+                </div>
+        
+                <div class="box">
+                    <h3>quick links</h3>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>home</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>features</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>products</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>categories</a>
+                    <a href="#" class="links"><i class="fas fa-arrow-right"></i>review</a>
+                    <!-- <a href="#" class="links"><i class="fas fa-arrow-right"></i>blogs</a> -->
+                </div>
+        
+                <div class="box">
+                    <h3>newsletter</h3>
+                    <p>subscribe for latest updates</p>
+                  <div class="feedback">  <input type="text" placeholder="Please write feedback..." class="email">
+                    <input type="submit" value="sumbit" class="btn" >
+                    <img src="payment.png" class="payment-img" alt="">
+                    </div>
+                </div>
+            </div>
+        
+            <div class="credit">created by | <span> CodeQuads</span> | &copy;
+                all rights reserved</div>
+        </section>
+
+        <script src="script.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const cartButtons = document.querySelectorAll('.add-to-cart');
+            
+                cartButtons.forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const productElement = event.target.closest('.pro');
+                        const productId = productElement.getAttribute('data-id');
+                        const productName = productElement.querySelector('h5').innerText;
+                        const productPrice = productElement.querySelector('h4').innerText;
+                        addToCart(productId, productName, productPrice);
+                    });
+                });
+            
+                function addToCart(productId, productName, productPrice) {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const productIndex = cart.findIndex(product => product.id === productId);
+                    if (productIndex > -1) {
+                        cart[productIndex].quantity += 1;
+                    } else {
+                        cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    alert('Product added to cart!');
+                    updateCartCount();
+                }
+            
+                function updateCartCount() {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const cartCount = cart.reduce((acc, product) => acc + product.quantity, 0);
+                    document.getElementById('cart-count').innerText = cartCount;
+                }
+            
+                // Initialize cart count on page load
+                updateCartCount();
+            });
+        </script>
+    </body>
+
+</html>
+
+<!--cart.html ka abhishek wala code-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Tech2etc Ecommerce</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="stylee.css">
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="img/logo.png" class="logo" width="10" alt="Tech2etc Logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a class="active" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <li>Cart: <span id="cart-count">0</span></li>
+                
+            </ul>
+        </div>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <h2>Your Cart</h2>
+        <div id="cart-items-container">
+            <!-- Cart items will be injected here by JavaScript -->
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function displayCartItems() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartItemsContainer = document.getElementById('cart-items-container');
+                cartItemsContainer.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const cartItem = document.createElement('div');
+                        cartItem.classList.add('cart-item');
+                        cartItem.innerHTML = `
+                            <h5>${item.name}</h5>
+                            <p>Price: ${item.price}</p>
+                            <p>Quantity: ${item.quantity}</p>
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        `;
+                        cartItemsContainer.appendChild(cartItem);
+                    });
+
+                    const removeButtons = document.querySelectorAll('.remove-item');
+                    removeButtons.forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const productId = event.target.getAttribute('data-id');
+                            removeFromCart(productId);
+                        });
+                    });
+                }
+            }
+
+            function removeFromCart(productId) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(item => item.id !== productId);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCartItems();
+                updateCartCount();
+            }
+
+            function updateCartCount() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCount = cart.reduce((acc, product) => acc + product.quantity, 0);
+                document.getElementById('cart-count').innerText = cartCount;
+            }
+
+            // Initialize cart items on page load
+            displayCartItems();
+            updateCartCount();
+        });
+    </script>
+</body>
+
+</html>

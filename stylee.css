@@ -1,0 +1,139 @@
+/* stylee.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Section */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #333;
+    color: white;
+}
+
+#header .logo {
+    max-width: 150px;
+}
+
+#navbar {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+#navbar li {
+    display: inline;
+}
+
+#navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#navbar a.active, #navbar a:hover {
+    color: #ff6347;
+}
+
+#cart-count {
+    font-weight: bold;
+    color: #ff6347;
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('img/hero.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+#hero h1, #hero h2, #hero h4, #hero p {
+    margin: 10px 0;
+}
+
+#hero button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#hero button:hover {
+    background-color: #e5533d;
+}
+
+/* Feature Section */
+#feature {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.fe-box {
+    text-align: center;
+}
+
+.fe-box img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+/* Product Section */
+#product1 {
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+#product1 h2, #product1 p {
+    text-align: center;
+}
+
+.pro-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.pro {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.pro img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pro .des {
+    margin-top: 10px;
+}
+
+.pro .des span {
+    display: block;
+    color: #888;
+    font-size: 14px;
+}
+
+.pro .des h5 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.pro .des .star {
+    color: #ff6347;
+}

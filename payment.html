@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('img/products/');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .payment-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+        .payment-container h1,
+        .payment-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .payment-container hr {
+            border: 1px solid #040404;
+        }
+        .payment-container p {
+            margin: 15px 0;
+        }
+        .payment-container input[type="text"],
+        .payment-container input[type="email"],
+        .payment-container input[type="number"],
+        .payment-container input[type="password"],
+        .payment-container input[type="date"],
+        .payment-container textarea,
+        .payment-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #040404;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .payment-container input[type="submit"],
+        .payment-container input[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .payment-container input[type="submit"] {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+        .payment-container input[type="reset"] {
+            background-color: #dc3545;
+            color: #faf6f6;
+        }
+        .payment-container input[type="submit"]:hover,
+        .payment-container input[type="reset"]:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <form action="">
+            <h1>Payment Form</h1>
+            <hr>
+            <h2>Contact Information</h2>
+            <p>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </p>
+            <p>
+                <label for="address">Address:</label>
+                <textarea name="address" id="address" cols="30" rows="4" required></textarea>
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <p>
+                <label for="pincode">PINCODE:</label>
+                <input type="number" name="pincode" id="pincode" required>
+            </p>
+            <hr>
+            <h2>Payment Information</h2>
+            <p>
+                <label for="card_type">Card type:</label>
+                <select name="card_type" id="card_type" required>
+                    <option value="">---Select card type---</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="Visa">Visa</option>
+                    <option value="Paytm">Paytm</option>
+                    <option value="Mastercard">Mastercard</option>
+                    <option value="UPI">UPI</option>
+                </select>
+            </p>
+            <p>
+                <label for="card_number">Card Number:</label>
+                <input type="password" name="card_number" id="card_number" required>
+              </p>
+              <p>
+                  <label for="exp_date">Expiration Date:</label>
+<input type="date" name="exp_date" id="exp_date" required>
+              </p>
+              <p>
+                  <label for="cvv">CVV:</label>
+                  <input type="password" name="cvv" id="cvv" required>
+              </p>
+              <p style="text-align: center;">
+                  <input type="submit" value="Confirm">
+                  <input type="reset" value="Reset">
+              </p>
+          </form>
+      </div>
+  </body>
+  </html>
